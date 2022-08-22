@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- # Stylesheet -->
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ratespiel</title>
+</head>
+<body>
+    <h1 class="test">Ratespiel</h1>
+    <ul>
+    {% for task in tasks %}
+        <li> {{ task.content }} <a href='{{url_for("delete", id=task.id)}}'>DEL</a> </li>
+    {% endfor %}
+    </ul>
+    
+    <form action='' method='post'>
+        <label for='content'>Gib eine Zahl ein:</label>
+        <input type='number' name='number' placeholder="0">
+        <input type='submit' value='Bestätigen' class="button">
+    </form>
+</body>
+</html>
