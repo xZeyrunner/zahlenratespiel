@@ -20,5 +20,10 @@
         <input type='number' name='number' placeholder="0">
         <input type='submit' value='Bestätigen' class="button">
     </form>
+    {% if richtig == True %}
+    {% block content %}
+    <div>Richtig!</div>
+    {% endblock content %}
+{% endif %}
 </body>
 </html>

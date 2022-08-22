@@ -1,14 +1,17 @@
-from pickle import NONE
+from random import randrange
 from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy, Model
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///zahlen.db'
 db = SQLAlchemy(app)
+randomZahl = randrange(1, 100)
+richtig = True
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    print(randomZahl)
     if request.method == 'POST':
         new_number = request.form['number']
         new_number = int(new_number)
@@ -19,7 +22,15 @@ def index():
         return redirect('/')
     else:
         my_tasks = Task.query.all()
-        return render_template('index.html', tasks=my_tasks)
+        if(my_tasks):
+            print(my_tasks[-1].content)
+            if(int(my_tasks[-1].content) == randomZahl):
+                print("Test")
+                return render_template('index.html', tasks=my_tasks, richtig=richtig)
+            else:
+                return render_template('index.html', tasks=my_tasks)
+        else:
+            return render_template('index.html', tasks=my_tasks)
 
 @app.route('/delete/<int:id>')  #
 def delete(id):                 #
