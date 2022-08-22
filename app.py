@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 def index():
     if request.method == 'POST':
         new_number = request.form['number']
-        new_number = int(new_number) 
+        new_number = int(new_number)
         if(new_number != ""):
             t = Task(content=new_number)
             db.session.add(t)
