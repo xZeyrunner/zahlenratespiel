@@ -10,6 +10,7 @@ randomZahl = randrange(1, 100)
 richtig = True
 tiefer = True
 hoeher = True
+versuche = 0
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -24,14 +25,15 @@ def index():
         return redirect('/')
     else:
         my_tasks = Task.query.all()
+        versuche = len(my_tasks)
         if(my_tasks):
             aktuelleZahl = my_tasks[-1].content
             if int(my_tasks[-1].content) == randomZahl:
-                return render_template('index.html', tasks=my_tasks, richtig=richtig, aktuelleZahl=aktuelleZahl)
+                return render_template('index.html', tasks=my_tasks, richtig=richtig, aktuelleZahl=aktuelleZahl, versuche=versuche)
             elif int(my_tasks[-1].content) > randomZahl:
-                return render_template('index.html', tasks=my_tasks, tiefer=tiefer, aktuelleZahl=aktuelleZahl)
+                return render_template('index.html', tasks=my_tasks, tiefer=tiefer, aktuelleZahl=aktuelleZahl, versuche=versuche)
             elif int(my_tasks[-1].content) < randomZahl:
-                return render_template('index.html', tasks=my_tasks, hoeher=hoeher, aktuelleZahl=aktuelleZahl)
+                return render_template('index.html', tasks=my_tasks, hoeher=hoeher, aktuelleZahl=aktuelleZahl, versuche=versuche)
         else:
             return render_template('index.html', tasks=my_tasks)
 
