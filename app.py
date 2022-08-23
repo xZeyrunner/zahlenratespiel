@@ -8,6 +8,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///zahlen.db'
 db = SQLAlchemy(app)
 randomZahl = randrange(1, 100)
 richtig = True
+tiefer = True
+hoeher = True
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -24,11 +26,12 @@ def index():
         my_tasks = Task.query.all()
         if(my_tasks):
             print(my_tasks[-1].content)
-            if(int(my_tasks[-1].content) == randomZahl):
-                print("Test")
+            if int(my_tasks[-1].content) == randomZahl:
                 return render_template('index.html', tasks=my_tasks, richtig=richtig)
-            else:
-                return render_template('index.html', tasks=my_tasks)
+            elif int(my_tasks[-1].content) > randomZahl:
+                return render_template('index.html', tasks=my_tasks, tiefer=tiefer)
+            elif int(my_tasks[-1].content) < randomZahl:
+                return render_template('index.html', tasks=my_tasks, hoeher=hoeher)
         else:
             return render_template('index.html', tasks=my_tasks)
 

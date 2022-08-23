@@ -25,5 +25,17 @@
     <div>Richtig!</div>
     {% endblock content %}
 {% endif %}
+
+    {% if tiefer == True %}
+    {% block content2 %}
+    <div>Tiefer!</div>
+    {% endblock content2 %}
+{% endif %}
+
+    {% if hoeher == True %}
+    {% block content3 %}
+    <div>Höher!</div>
+    {% endblock content3 %}
+{% endif %}
 </body>
 </html>
