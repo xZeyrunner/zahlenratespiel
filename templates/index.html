@@ -23,18 +23,19 @@
     {% if richtig == True %}
     {% block content %}
     <div>Richtig!</div>
+    <input type='text' placeholder="Name">
     {% endblock content %}
 {% endif %}
 
     {% if tiefer == True %}
     {% block content2 %}
-    <div>Tiefer!</div>
+    <div>Tiefer als {{aktuelleZahl}}!</div>
     {% endblock content2 %}
 {% endif %}
 
     {% if hoeher == True %}
     {% block content3 %}
-    <div>Höher!</div>
+    <div>Höher als {{aktuelleZahl}}!</div>
     {% endblock content3 %}
 {% endif %}
 </body>

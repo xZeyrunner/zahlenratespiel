@@ -25,13 +25,13 @@ def index():
     else:
         my_tasks = Task.query.all()
         if(my_tasks):
-            print(my_tasks[-1].content)
+            aktuelleZahl = my_tasks[-1].content
             if int(my_tasks[-1].content) == randomZahl:
-                return render_template('index.html', tasks=my_tasks, richtig=richtig)
+                return render_template('index.html', tasks=my_tasks, richtig=richtig, aktuelleZahl=aktuelleZahl)
             elif int(my_tasks[-1].content) > randomZahl:
-                return render_template('index.html', tasks=my_tasks, tiefer=tiefer)
+                return render_template('index.html', tasks=my_tasks, tiefer=tiefer, aktuelleZahl=aktuelleZahl)
             elif int(my_tasks[-1].content) < randomZahl:
-                return render_template('index.html', tasks=my_tasks, hoeher=hoeher)
+                return render_template('index.html', tasks=my_tasks, hoeher=hoeher, aktuelleZahl=aktuelleZahl)
         else:
             return render_template('index.html', tasks=my_tasks)
 
