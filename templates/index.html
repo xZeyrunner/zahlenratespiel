@@ -22,10 +22,11 @@
 {% endif %}
     
     <form action='' method='post'>
-        <label for='content'>Gib eine Zahl ein:</label>
+        <label for='content'>Gib eine Zahl zwischen 0 und 100 ein:</label>
         <input type='number' name='number' placeholder="0">
         <input type='submit' value='Bestätigen' class="button">
     </form>
+
     {% if richtig == True %}
     {% block content %}
     <div>Richtig!</div>

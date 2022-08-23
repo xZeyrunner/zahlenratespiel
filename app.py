@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///zahlen.db'
 db = SQLAlchemy(app)
-randomZahl = randrange(1, 100)
+randomZahl = randrange(0, 100)
 richtig = True
 tiefer = True
 hoeher = True
@@ -14,19 +14,20 @@ versuche = 0
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    print(randomZahl)
+    global gueltigeZahl
     if request.method == 'POST':
         new_number = request.form['number']
-        new_number = int(new_number)
-        if(new_number != ""):
-            t = Task(content=new_number)
-            db.session.add(t)
-            db.session.commit() 
+        if new_number != "":
+            new_number = int(new_number)
+            if new_number <= 100 and new_number >= 0:
+                t = Task(content=new_number)
+                db.session.add(t)
+                db.session.commit()
         return redirect('/')
     else:
         my_tasks = Task.query.all()
-        versuche = len(my_tasks)
         if(my_tasks):
+            versuche = len(my_tasks)
             aktuelleZahl = my_tasks[-1].content
             if int(my_tasks[-1].content) == randomZahl:
                 return render_template('index.html', tasks=my_tasks, richtig=richtig, aktuelleZahl=aktuelleZahl, versuche=versuche)
