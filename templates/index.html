@@ -1,44 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- # Stylesheet -->
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="block"></div>
+<div class="borderAll">
+    <head>
+        <!-- # Stylesheet -->
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">   
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ratespiel</title>
-</head>
-<body>
-    <h1 class="test">Ratespiel</h1>
-    {% if versuche %}
-    {% block content4 %}
-    <div>Bereits gebrauchte Versuche: {{versuche}}</div>
-    {% endblock content4 %}
-{% endif %}
+     <title>Ratespiel</title>
+    </head>
+    <body>
+        <div class="blockAbove"></div>
+        <h1 class="test">Ratespiel</h1>
+        
     
-    <form action='' method='post'>
-        <label for='content'>Gib eine Zahl zwischen 0 und 100 ein:</label>
-        <input type='number' name='number' placeholder="0">
-        <input type='submit' value='Bestätigen' class="button">
-    </form>
-
-    {% if richtig == True %}
-    {% block content %}
-    <div>Richtig!</div>
-    <input type='text' name="name" placeholder="Name">
-    <input type='submit' value='Bestätigen' class="button">
-    {% endblock content %}
-{% endif %}
-
-    {% if tiefer == True %}
-    {% block content2 %}
-    <div>Tiefer als {{aktuelleZahl}}!</div>
-    {% endblock content2 %}
-{% endif %}
-
-    {% if hoeher == True %}
-    {% block content3 %}
-    <div>Höher als {{aktuelleZahl}}!</div>
-    {% endblock content3 %}
-{% endif %}
-</body>
+        <form action='' method='post' style="margin-bottom: 10px;">
+         <label for='content'>Gib eine Zahl ein:</label>
+         <br>
+         <input type='number' name='number' placeholder="0">
+         <br>
+         <br>
+         <input type='submit' value='Bestätigen' class="button">
+        </form>
+     {% if richtig == True %}
+     {% block content %}
+        <div class="bemerkung">Richtig!</div>
+        {% endblock content %}
+    {% endif %}
+    </body>
+</div>
 </html>
