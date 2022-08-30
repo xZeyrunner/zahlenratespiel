@@ -9,12 +9,6 @@
 </head>
 <body>
     <h1 class="test">Ratespiel</h1>
-    <ul>
-    {% for task in tasks %}
-        <li> {{ task.content }} <a href='{{url_for("delete", id=task.id)}}'>DEL</a> </li>
-    {% endfor %}
-    </ul>
-
     {% if versuche %}
     {% block content4 %}
     <div>Bereits gebrauchte Versuche: {{versuche}}</div>
